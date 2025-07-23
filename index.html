@@ -3,93 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noon Price Spy  - Home</title>
+    <title>Noon Price Spy V2 - Home</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f9fc;
-            color: #333;
-        }
-        .navbar {
-            background-color: #ffffff;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #e0e6ed;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0072ff;
-        }
-        .nav-links a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        h1, h2 {
-            color: #0072ff;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        h2 {
-            border-bottom: 2px solid #e0e6ed;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f7f9fc; color: #333; }
+        .navbar { background-color: #ffffff; padding: 1rem 2rem; border-bottom: 1px solid #e0e6ed; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .navbar-brand { font-size: 1.5rem; font-weight: 600; color: #0072ff; text-decoration: none; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 500; }
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 30px; margin-bottom: 30px; }
+        h1, h2 { color: #0072ff; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .footer { text-align: center; padding: 20px; color: #6c757d; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="navbar-brand">Noon Price Spy </div>
+        <a href="index.html" class="navbar-brand">Noon Price Spy V2</a>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
         </div>
     </nav>
 
     <div class="container">
-        <section id="home" class="card">
-            <h2>Welcome to Noon Price Spy </h2>
+        <div class="card">
+            <h1>Welcome to Noon Price Spy V2</h1>
             <p>Your personal assistant for tracking prices on Noon.com. Get instant alerts when prices drop so you never miss a deal.</p>
             
-            <h3>Key Features</h3>
+            <h2>Key Features</h2>
             <ul>
                 <li>Track any product from Noon.com.</li>
                 <li>Set a target price and get notified when it's reached.</li>
@@ -98,43 +41,13 @@
                 <li>Optionally connect your Gmail account to receive price alerts directly to your inbox.</li>
             </ul>
 
-            <h3>Contact Us</h3>
+            <h2>Contact Us</h2>
             <p>For support, questions, or feedback, please contact us at: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        </section>
-
-        <section id="privacy" class="card">
-            <h2>Privacy Policy</h2>
-            <p><em>Last updated: July 23, 2025</em></p>
-            <p>This privacy policy explains how Noon Price Spy  ("we," "us," or "our") handles your information when you use our browser extension.</p>
-            
-            <h3>Information We Use</h3>
-            <p>To provide email alerts, we use Google's authentication services. If you choose to connect your Gmail account, we require access to the following permissions:</p>
-            <ul>
-                <li><strong><code>https://www.googleapis.com/auth/userinfo.email</code></strong>: We use this permission to verify your identity and display your email address within the extension's settings. This confirms that you are connected.</li>
-                <li><strong><code>https://www.googleapis.com/auth/gmail.send</code></strong>: This permission is used <strong>only</strong> to send price alert emails to you, from your own email account. We do not read, delete, or manage your email in any other way. The extension automatically sends an email on your behalf only when a product you are tracking has a price change that meets your alert criteria.</li>
-            </ul>
-
-            <h3>How We Use Your Information</h3>
-            <p>Your Google user information is used exclusively to provide the optional email alert functionality of the extension. We do not store your personal data on our servers, and we do not sell or share your information with any third parties. All product and tracking information is stored locally on your computer through Chrome's Storage API.</p>
-        </section>
-
-        <section id="terms" class="card">
-            <h2>Terms of Service</h2>
-            <p>By using the Noon Price Spy  browser extension (the "Service"), you agree to these terms. Please read them carefully.</p>
-            
-            <h3>Description of Service</h3>
-            <p>The Service is a tool designed to track prices of products on Noon.com and provide alerts. The information provided is for informational purposes only.</p>
-            
-            <h3>Disclaimer of Warranties</h3>
-            <p>The Service is provided "as-is." We do not guarantee the accuracy, timeliness, or completeness of any pricing or product information. Prices on Noon.com can change at any time, and we are not responsible for any discrepancies.</p>
-            
-            <h3>Limitation of Liability</h3>
-            <p>You agree that we will not be liable for any financial loss or missed opportunity resulting from the use of, or inability to use, this Service.</p>
-        </section>
+        </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 Noon Price Spy . All rights reserved.</p>
+        <p>&copy; 2025 Noon Price Spy V2. All rights reserved.</p>
     </footer>
 
 </body>
