@@ -147,6 +147,11 @@
                     localStorage.setItem('email_confirmed', 'true');
                     localStorage.setItem('confirmed_email', data.user?.email || '');
                     
+                    // Clear any pending email flags
+                    if (data.user?.email) {
+                        localStorage.removeItem(`pending_email_${data.user.email}`);
+                    }
+                    
                     showActions();
                 } else {
                     throw new Error(data.error_description || data.msg || 'Confirmation failed');
