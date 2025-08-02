@@ -49,35 +49,41 @@
             messageDiv.textContent = 'Authentication successful! Redirecting...';
             messageDiv.className = 'success';
             
-            // Send success message to extension if opened by it
-            if (window.opener) {
-                window.opener.postMessage({
-                    type: 'OAUTH_SUCCESS',
-                    accessToken: accessToken
-                }, '*');
-                setTimeout(() => window.close(), 2000);
-            } else {
-                // If not opened by extension, redirect to extension
-                setTimeout(() => {
-                    window.location.href = 'chrome-extension://apcoccjfbmpdelaphapjhoncgocpgojk/popup.html';
-                }, 2000);
-            }
+            // Store success data in localStorage for extension to pick up
+            const userData = {
+                email: 'google_user@example.com', // You can extract from token if needed
+                id: 'google_user_id',
+                accessToken: accessToken
+            };
+            localStorage.setItem('oauth_complete', JSON.stringify(userData));
+            
+            // Close this tab after a short delay
+            setTimeout(() => {
+                window.close();
+            }, 2000);
+            
         } else if (error) {
             // Error
             const errorMsg = errorDescription || error;
             messageDiv.textContent = 'Authentication failed: ' + errorMsg;
             messageDiv.className = 'error';
             
-            if (window.opener) {
-                window.opener.postMessage({
-                    type: 'OAUTH_ERROR',
-                    error: errorMsg
-                }, '*');
-                setTimeout(() => window.close(), 3000);
-            }
+            // Store error in localStorage
+            localStorage.setItem('oauth_error', errorMsg);
+            
+            // Close this tab after a short delay
+            setTimeout(() => {
+                window.close();
+            }, 3000);
+            
         } else {
             messageDiv.textContent = 'No authentication data found. This page is for OAuth redirects only.';
             messageDiv.className = 'error';
+            
+            // If this page is accessed directly, redirect back to extension
+            setTimeout(() => {
+                window.location.href = 'chrome-extension://apcoccjfbmpdelaphapjhoncgocpgojk/popup.html';
+            }, 3000);
         }
     </script>
 </body>
