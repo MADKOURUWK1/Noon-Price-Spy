@@ -34,7 +34,15 @@
         const urlParams = new URLSearchParams(window.location.search);
         const accessToken = urlParams.get('access_token');
         const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
         const messageDiv = document.getElementById('message');
+        
+        console.log('OAuth redirect parameters:', {
+            accessToken: accessToken ? 'present' : 'missing',
+            error: error,
+            errorDescription: errorDescription,
+            allParams: Object.fromEntries(urlParams.entries())
+        });
         
         if (accessToken) {
             // Success
@@ -56,18 +64,19 @@
             }
         } else if (error) {
             // Error
-            messageDiv.textContent = 'Authentication failed: ' + error;
+            const errorMsg = errorDescription || error;
+            messageDiv.textContent = 'Authentication failed: ' + errorMsg;
             messageDiv.className = 'error';
             
             if (window.opener) {
                 window.opener.postMessage({
                     type: 'OAUTH_ERROR',
-                    error: error
+                    error: errorMsg
                 }, '*');
                 setTimeout(() => window.close(), 3000);
             }
         } else {
-            messageDiv.textContent = 'No authentication data found.';
+            messageDiv.textContent = 'No authentication data found. This page is for OAuth redirects only.';
             messageDiv.className = 'error';
         }
     </script>
