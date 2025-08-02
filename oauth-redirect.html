@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Noon Price Spy - OAuth Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #f7f9fc;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .loading { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="message" class="loading">
+            Processing authentication...
+        </div>
+    </div>
+
+    <script>
+        // Handle OAuth redirect and communicate with extension
+        const urlParams = new URLSearchParams(window.location.search);
+        const accessToken = urlParams.get('access_token');
+        const error = urlParams.get('error');
+        const messageDiv = document.getElementById('message');
+        
+        if (accessToken) {
+            // Success
+            messageDiv.textContent = 'Authentication successful! Redirecting...';
+            messageDiv.className = 'success';
+            
+            // Send success message to extension if opened by it
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'OAUTH_SUCCESS',
+                    accessToken: accessToken
+                }, '*');
+                setTimeout(() => window.close(), 2000);
+            } else {
+                // If not opened by extension, redirect to extension
+                setTimeout(() => {
+                    window.location.href = 'chrome-extension://apcoccjfbmpdelaphapjhoncgocpgojk/popup.html';
+                }, 2000);
+            }
+        } else if (error) {
+            // Error
+            messageDiv.textContent = 'Authentication failed: ' + error;
+            messageDiv.className = 'error';
+            
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'OAUTH_ERROR',
+                    error: error
+                }, '*');
+                setTimeout(() => window.close(), 3000);
+            }
+        } else {
+            messageDiv.textContent = 'No authentication data found.';
+            messageDiv.className = 'error';
+        }
+    </script>
+</body>
+</html> 
